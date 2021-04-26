@@ -37,4 +37,5 @@ BreachType classifyTemperatureBreach(CoolingType coolingType, double temperature
 AlertType sendToController(BreachType breachType);
 AlertType sendToEmail(BreachType breachType);
 AlertType sendToConsole(BreachType breachType);
+AlertType DisplayMessage(BreachType breachType);
 
