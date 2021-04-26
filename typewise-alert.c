@@ -83,7 +83,7 @@ AlertType  sendToEmail(BreachType breachType) {
       return DisplayMessage(breachType);
       break;
     case NORMAL:
-      break;
+      break;}
   }
   AlertType  sendToConsole(BreachType breachType)
   {
