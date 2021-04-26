@@ -68,6 +68,7 @@ void checkAndAlert(
 AlertType  sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
   printf("%x : %x\n", header, breachType);
+ return DisplayMessage(breachType);
 }
 
 AlertType  sendToEmail(BreachType breachType) {
@@ -75,11 +76,11 @@ AlertType  sendToEmail(BreachType breachType) {
   switch(breachType) {
     case TOO_LOW:
       printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too low\n");
+      return DisplayMessage(breachType);
       break;
     case TOO_HIGH:
       printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too high\n");
+      return DisplayMessage(breachType);
       break;
     case NORMAL:
       break;
