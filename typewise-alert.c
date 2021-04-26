@@ -5,6 +5,21 @@ Include header files
 #include "typewise-alert.h"
 #include <stdio.h>
 
+double LowerTempBoundary[]= {0,0,0};
+double UpperTempBoundary[]= {35,45,40};
+
+const char* Breach[] = { "normal", "low" , "high" } ;
+AlertType AlertStatus= AlertFailed;
+
+typedef AlertType (*SendtheAlertMessage) (BreachType breachType);
+SendtheAlertMessage AlertDestination[] = 
+    {
+        sendToController, 
+        sendToEmail, 
+        sendToConsole
+    };
+
+
 /********************************************************************************
  * Function: inferBreach
  
@@ -26,7 +41,7 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
 
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
-  int lowerLimit = 0;
+  /*int lowerLimit = 0;
   int upperLimit = 0;
   switch(coolingType) {
     case PASSIVE_COOLING:
@@ -41,8 +56,8 @@ BreachType classifyTemperatureBreach(
       lowerLimit = 0;
       upperLimit = 40;
       break;
-  }
-  return inferBreach(temperatureInC, lowerLimit, upperLimit);
+  }*/
+  return inferBreach(temperatureInC, LowerTempBoundary[coolingType], UowerTempBoundary[coolingType]);
 }
 
 void checkAndAlert(
@@ -52,7 +67,7 @@ void checkAndAlert(
     batteryChar.coolingType, temperatureInC
   );
 
-  switch(alertTarget) {
+  /*switch(alertTarget) {
     case TO_CONTROLLER:
       sendToController(breachType);
       break;
@@ -62,7 +77,8 @@ void checkAndAlert(
     case TO_CONSOLE:
       sendToConsole(breachType);
       break;
-  }
+  }*/
+ return(AlertDestination[alertTarget](breachType));
 }
 
 AlertType  sendToController(BreachType breachType) {
@@ -73,18 +89,19 @@ AlertType  sendToController(BreachType breachType) {
 
 AlertType  sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
-  switch(breachType) {
-    case TOO_LOW:
-      printf("To: %s\n", recepient);
-      return DisplayMessage(breachType);
-      break;
-    case TOO_HIGH:
-      printf("To: %s\n", recepient);
-      return DisplayMessage(breachType);
-      break;
-    case NORMAL:
-      break;
-  }
+//   switch(breachType) {
+//     case TOO_LOW:
+//       printf("To: %s\n", recepient);
+//       return DisplayMessage(breachType);
+//       break;
+//     case TOO_HIGH:
+//       printf("To: %s\n", recepient);
+//       return DisplayMessage(breachType);
+//       break;
+//     case NORMAL:
+//       break;
+//   }
+  return DisplayMessage(breachType);
   }
 
   AlertType  sendToConsole(BreachType breachType)
