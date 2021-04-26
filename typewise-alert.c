@@ -57,10 +57,10 @@ BreachType classifyTemperatureBreach(
       upperLimit = 40;
       break;
   }*/
-  return inferBreach(temperatureInC, LowerTempBoundary[coolingType], UowerTempBoundary[coolingType]);
+  return inferBreach(temperatureInC, LowerTempBoundary[coolingType], UpperTempBoundary[coolingType]);
 }
 
-void checkAndAlert(
+AlertType checkAndAlert(
     AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
 
   BreachType breachType = classifyTemperatureBreach(
