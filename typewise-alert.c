@@ -5,7 +5,7 @@ Include header files
 #include "typewise-alert.h"
 #include <stdio.h>
 
-********************************************************************************
+/********************************************************************************
  * Function: inferBreach
  
  *it checks if the passed attribute value is exceeding the thresholds.
@@ -86,6 +86,12 @@ AlertType  sendToEmail(BreachType breachType) {
   }
   AlertType  sendToConsole(BreachType breachType)
   {
-    printf("Hi, the status is %x\n", breachType);
+    return DisplayMessage(breachType);
   }
+ AlertType DisplayMessage(BreachType breachType)
+ {
+   printf("Hi, the status is %x\n", breachType);
+   return AlertPassed;
+ }
+
 }
