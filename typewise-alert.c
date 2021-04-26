@@ -65,12 +65,12 @@ void checkAndAlert(
   }
 }
 
-void sendToController(BreachType breachType) {
+AlertType  sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
   printf("%x : %x\n", header, breachType);
 }
 
-void sendToEmail(BreachType breachType) {
+AlertType  sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   switch(breachType) {
     case TOO_LOW:
@@ -84,8 +84,8 @@ void sendToEmail(BreachType breachType) {
     case NORMAL:
       break;
   }
-  void sendToConsole(BreachType breachType)
+  AlertType  sendToConsole(BreachType breachType)
   {
-    printf("Hi, the status is %x\n, breachType);
+    printf("Hi, the status is %x\n", breachType);
   }
 }
