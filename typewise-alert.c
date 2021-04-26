@@ -1,6 +1,19 @@
+/**********************************************
+Include header files
+***********************************************/
+
 #include "typewise-alert.h"
 #include <stdio.h>
 
+********************************************************************************
+ * Function: inferBreach
+ 
+ *it checks if the passed attribute value is exceeding the thresholds.
+ 
+ * input: BMS attribute value here
+ 
+ * returns: breach type as TOO LOW, HIGH OR NORMAL
+ *********************************************************************************/
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
     return TOO_LOW;
@@ -46,6 +59,9 @@ void checkAndAlert(
     case TO_EMAIL:
       sendToEmail(breachType);
       break;
+    case TO_CONSOLE:
+      sendToConsole(breachType);
+      break;
   }
 }
 
@@ -67,5 +83,9 @@ void sendToEmail(BreachType breachType) {
       break;
     case NORMAL:
       break;
+  }
+  void sendToConsole(BreachType breachType)
+  {
+    printf("Hi, the status is %x\n, breachType);
   }
 }
