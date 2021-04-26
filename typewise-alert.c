@@ -83,16 +83,19 @@ AlertType  sendToEmail(BreachType breachType) {
       return DisplayMessage(breachType);
       break;
     case NORMAL:
-      break;}
+      break;
   }
+  }
+
   AlertType  sendToConsole(BreachType breachType)
   {
     return DisplayMessage(breachType);
   }
+
  AlertType DisplayMessage(BreachType breachType)
  {
    printf("Hi, the status is %x\n", breachType);
    return AlertPassed;
  }
 
-}
+
